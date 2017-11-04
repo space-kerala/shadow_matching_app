@@ -27,9 +27,9 @@ public class MainActivity extends AppCompatActivity {
         User user2 = new User("bear", "file:///android_asset/bear.png");
         User user3 = new User("plant", "file:///android_asset/plant.png");
 
-        User user4 = new User("apple", "file:///android_asset/apple_shadow.png");
-        User user5 = new User("bear", "file:///android_asset/bear_shadow.png");
-        User user6 = new User("plant", "file:///android_asset/plant_shadow.png");
+        User user4 = new User("apple", "file:///android_asset/apple.png");
+        User user5 = new User("bear", "file:///android_asset/bear.png");
+        User user6 = new User("plant", "file:///android_asset/plant.png");
 
 
         ArrayList<User> userList = new ArrayList<>();

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DragnDropRecyclerviewapp.iml" filepath="$PROJECT_DIR$/DragnDropRecyclerviewapp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shadow_matching_app.iml" filepath="$PROJECT_DIR$/shadow_matching_app.iml" />
     </modules>
   </component>
 </project>

@@ -40,6 +40,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements
 
 
 
+
+
        if(position<=2) {
 
            holder.imageButton.setOnLongClickListener(new View.OnLongClickListener() {
@@ -55,6 +57,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements
        }
 
         if(position>2){
+
             holder.imageButton.setOnDragListener(this);
         }
 
