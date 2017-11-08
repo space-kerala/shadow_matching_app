@@ -16,11 +16,13 @@ import com.example.root.dragndroprecyclerviewapp.databinding.UserItemBinding;
 public class UserViewHolder extends RecyclerView.ViewHolder {
     private UserItemBinding binding;
     public ImageButton imageButton;
+   
 
     public UserViewHolder(View layoutView) {
         super(layoutView);
         binding = DataBindingUtil.bind(layoutView);
         imageButton = (ImageButton) layoutView.findViewById(R.id.circleView);
+
 
     }
 
