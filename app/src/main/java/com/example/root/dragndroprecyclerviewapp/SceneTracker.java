@@ -6,7 +6,7 @@ package com.example.root.dragndroprecyclerviewapp;
 
 public class SceneTracker {
     private static int level=0;
-    private static int totalLevel=0,count=0;
+    private static int totalLevel=0,count=0,picassoCount=0;
     public SceneTracker( ){
 
     }
@@ -31,6 +31,14 @@ public class SceneTracker {
         return count;
     }
 
+
+    public static void setPicassoCount(int value){
+        picassoCount=value;
+    }
+
+    public static int getPicassoCount(){
+        return picassoCount;
+    }
 
 
     public static void setTotalLevel(int value) {

@@ -12,7 +12,6 @@ import android.widget.ImageButton;
 import com.example.root.dragndroprecyclerviewapp.databinding.UserItemBinding;
 
 
-
 public class UserViewHolder extends RecyclerView.ViewHolder {
     private UserItemBinding binding;
     public ImageButton imageButton;
@@ -25,6 +24,7 @@ public class UserViewHolder extends RecyclerView.ViewHolder {
 
 
     }
+
 
     public void bind(User user) {
         binding.setUser(user);
