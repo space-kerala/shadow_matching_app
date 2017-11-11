@@ -8,6 +8,7 @@ import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements
     private JsonHandler jsonHandler;
     private Context context;
     private boolean matchFlag = false;
+    private ImageButton imageButtonBack;
 
 
     public UserAdapter(List<User> users, Context context) {
@@ -36,7 +38,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View statusContainer = inflater.inflate(R.layout.user_item, parent, false);
-
 
         return new UserViewHolder(statusContainer);
 
@@ -180,6 +181,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements
 
         countMatch(matchFlag);
         return true;
+    }
+
+
+    public void prevScene()
+    {
+        users.clear();
+        SceneTracker.setLevel(SceneTracker.getLevel()-1);
+        users=jsonHandler.getSceneData(SceneTracker.getLevel()-1);
+        UserAdapter.this.notifyDataSetChanged();
     }
 
 

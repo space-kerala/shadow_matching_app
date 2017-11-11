@@ -1,5 +1,5 @@
 {
-
+  
   "scenes": [
 
     [
@@ -8,22 +8,33 @@
     {"src":"file:///android_asset/plant.png","answer":"plant"},
     {"src":"file:///android_asset/apple.png","answer":"apple"},
     {"src":"file:///android_asset/bear.png","answer":"bear"},
-      {"src":"file:///android_asset/plant.png","answer":"plant"}
+    {"src":"file:///android_asset/plant.png","answer":"plant"}
     ]
   ,
-
-
+  
+  
     [
-      {"src":"file:///android_asset/lion.png","answer":"lion"},
-      {"src":"file:///android_asset/tux.png","answer":"tux"},
-      {"src":"file:///android_asset/chair.png","answer":"chair"},
-      {"src":"file:///android_asset/lion.png","answer":"lion"},
-      {"src":"file:///android_asset/tux.png","answer":"tux"},
-      {"src":"file:///android_asset/chair.png","answer":"chair"}
+    {"src":"file:///android_asset/lion.png","answer":"lion"},
+    {"src":"file:///android_asset/tux.png","answer":"tux"},
+    {"src":"file:///android_asset/chair.png","answer":"chair"},
+    {"src":"file:///android_asset/lion.png","answer":"lion"},
+    {"src":"file:///android_asset/tux.png","answer":"tux"},
+    {"src":"file:///android_asset/chair.png","answer":"chair"}
     ]
-
-
-
+    ,
+    
+    [
+    {"src":"file:///android_asset/grape.png","answer":"grape"},
+    {"src":"file:///android_asset/table.png","answer":"table"},
+    {"src":"file:///android_asset/banana.png","answer":"banana"},
+    {"src":"file:///android_asset/grape.png","answer":"grape"},
+    {"src":"file:///android_asset/table.png","answer":"table"},
+    {"src":"file:///android_asset/banana.png","answer":"banana"}
+    ]
+  
+    
+  
+  
 ]
-
+  
 }

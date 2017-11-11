@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.View;
+import android.widget.ImageButton;
 
 import java.io.File;
 
@@ -13,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private int coloumn;
     private JsonHandler jsonHandler;
-
+    private ImageButton imageButtonBack;
     private UserAdapter adapter;
 
     @Override
@@ -22,6 +24,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.binding_list_activity);
         int level=1;
         coloumn = 3;
+       imageButtonBack = (ImageButton)findViewById(R.id.imagebuttonback);
+        imageButtonBack.setVisibility(View.VISIBLE);
+
+        if (SceneTracker.getLevel() == 2) {
+            imageButtonBack.setVisibility(View.VISIBLE);
+        }
 
         recyclerView = (RecyclerView) findViewById(R.id.list);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(coloumn, 1));
@@ -33,6 +41,25 @@ public class MainActivity extends AppCompatActivity {
        SceneTracker.setLevel(level);
         adapter = new UserAdapter(jsonHandler.getSceneData(level-1),this);
         recyclerView.setAdapter(adapter);
+
+
+        imageButtonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(SceneTracker.getLevel()>1 && SceneTracker.getLevel() <= SceneTracker.getTotalLevel()) {
+                    adapter.prevScene();
+
+                }
+
+
+
+            }
+        });
+
+
+       /* if(SceneTracker.getLevel()==1){
+            imageButtonBack.setVisibility(View.INVISIBLE);
+        }*/
 
 
     }
@@ -72,4 +99,6 @@ public class MainActivity extends AppCompatActivity {
         // The directory is now empty so delete it
         return dir.delete();
     }
+
+
 }
