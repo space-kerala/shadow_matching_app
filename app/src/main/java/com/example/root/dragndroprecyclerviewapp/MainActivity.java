@@ -1,6 +1,7 @@
 package com.example.root.dragndroprecyclerviewapp;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -17,14 +18,16 @@ public class MainActivity extends AppCompatActivity {
     private JsonHandler jsonHandler;
     private ImageButton imageButtonBack;
     private UserAdapter adapter;
+    private MediaPlayer backButtonSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.binding_list_activity);
-        int level=1;
+        int level = 1;
         coloumn = 3;
-       imageButtonBack = (ImageButton)findViewById(R.id.imagebuttonback);
+        backButtonSound = MediaPlayer.create(this, R.raw.buttonclick);
+        imageButtonBack = (ImageButton) findViewById(R.id.imagebuttonback);
         imageButtonBack.setVisibility(View.VISIBLE);
 
         if (SceneTracker.getLevel() == 2) {
@@ -38,19 +41,19 @@ public class MainActivity extends AppCompatActivity {
         jsonHandler = new JsonHandler(this);
         jsonHandler.readJson();
 
-       SceneTracker.setLevel(level);
-        adapter = new UserAdapter(jsonHandler.getSceneData(level-1),this);
+        SceneTracker.setLevel(level);
+        adapter = new UserAdapter(jsonHandler.getSceneData(level - 1), this);
         recyclerView.setAdapter(adapter);
 
 
         imageButtonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(SceneTracker.getLevel()>1 && SceneTracker.getLevel() <= SceneTracker.getTotalLevel()) {
+                if (SceneTracker.getLevel() > 1 && SceneTracker.getLevel() <= SceneTracker.getTotalLevel()) {
+                    backButtonSound.start();
                     adapter.prevScene();
 
                 }
-
 
 
             }
@@ -74,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
     public static void trimCache(Context context) {
         try {
             File dir = context.getCacheDir();

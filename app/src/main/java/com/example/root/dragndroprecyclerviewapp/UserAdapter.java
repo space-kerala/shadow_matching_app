@@ -2,6 +2,7 @@ package com.example.root.dragndroprecyclerviewapp;
 
 import android.content.ClipData;
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.DragEvent;
@@ -11,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements View.OnDragListener {
@@ -23,6 +26,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements
     private Context context;
     private boolean matchFlag = false;
     private ImageButton imageButtonBack;
+    private MediaPlayer rightVoice, wrongVoice, mp;
+    private ArrayList<Integer> sounds;
 
 
     public UserAdapter(List<User> users, Context context) {
@@ -38,6 +43,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View statusContainer = inflater.inflate(R.layout.user_item, parent, false);
+        rightVoice = MediaPlayer.create(context, R.raw.correct);
+        wrongVoice = MediaPlayer.create(context, R.raw.wrong);
+        sounds = new ArrayList<>();
+        sounds.add(R.raw.correct1);
+        sounds.add(R.raw.correct2);
+        sounds.add(R.raw.correct3);
+        sounds.add(R.raw.correct4);
+        sounds.add(R.raw.correct5);
+        sounds.add(R.raw.correct6);
 
         return new UserViewHolder(statusContainer);
 
@@ -47,12 +61,19 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements
     private void nextScene(int value) {
 
         if (value == 3) {
-            users.clear();
+            mp.start();
+            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
 
-            SceneTracker.setLevel(SceneTracker.getLevel() + 1);
-            users = jsonHandler.getSceneData(SceneTracker.getLevel() - 1);
-            UserAdapter.this.notifyDataSetChanged();
-            SceneTracker.setCount(0);
+                    users.clear();
+                    SceneTracker.setLevel(SceneTracker.getLevel() + 1);
+                    users = jsonHandler.getSceneData(SceneTracker.getLevel() - 1);
+                    UserAdapter.this.notifyDataSetChanged();
+                    SceneTracker.setCount(0);
+
+                }
+            });
 
 
         }
@@ -168,12 +189,21 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements
 
         if ((tagDropTarget != null) && (tagDropTarget.equals(tagDroppedImage))) {
 
-            dropTarget.setImageDrawable(dropped.getDrawable());
+            rightVoice.start();
+            rightVoice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    playRandomSound();
+                    dropTarget.setImageDrawable(dropped.getDrawable());
+
+                }
+            });
 
             matchFlag = true;
-            Log.d("tagid", Integer.toString(dropped.getId()));
+            //Log.d("tagid", Integer.toString(dropped.getId()));
 
         } else {
+            wrongVoice.start();
             draggedImageView.setVisibility(View.VISIBLE);
             matchFlag = false;
             return false;
@@ -183,12 +213,21 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements
         return true;
     }
 
+    private void playRandomSound() {
+        int randomInt = (new Random().nextInt(sounds.size()));
+        int sound = sounds.get(randomInt);
+        mp = MediaPlayer.create(context, sound);
+        if (SceneTracker.getCount() != 3) {
+            mp.start();
+        }
 
-    public void prevScene()
-    {
+    }
+
+
+    public void prevScene() {
         users.clear();
-        SceneTracker.setLevel(SceneTracker.getLevel()-1);
-        users=jsonHandler.getSceneData(SceneTracker.getLevel()-1);
+        SceneTracker.setLevel(SceneTracker.getLevel() - 1);
+        users = jsonHandler.getSceneData(SceneTracker.getLevel() - 1);
         UserAdapter.this.notifyDataSetChanged();
     }
 
