@@ -12,12 +12,12 @@ import android.widget.ImageButton;
 import com.example.root.dragndroprecyclerviewapp.databinding.UserItemBinding;
 
 
-public class UserViewHolder extends RecyclerView.ViewHolder {
+public class ItemViewHolder extends RecyclerView.ViewHolder {
     private UserItemBinding binding;
     public ImageButton imageButton;
    
 
-    public UserViewHolder(View layoutView) {
+    public ItemViewHolder(View layoutView) {
         super(layoutView);
         binding = DataBindingUtil.bind(layoutView);
         imageButton = (ImageButton) layoutView.findViewById(R.id.circleView);
@@ -26,7 +26,7 @@ public class UserViewHolder extends RecyclerView.ViewHolder {
     }
 
 
-    public void bind(User user) {
-        binding.setUser(user);
+    public void bind(Item item) {
+        binding.setItem(item);
     }
 }

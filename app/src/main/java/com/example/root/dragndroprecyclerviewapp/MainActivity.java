@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private int coloumn;
     private JsonHandler jsonHandler;
     private ImageButton imageButtonBack;
-    private UserAdapter adapter;
+    private ItemAdapter adapter;
     private MediaPlayer backButtonSound;
 
     @Override
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         jsonHandler.readJson();
 
         SceneTracker.setLevel(level);
-        adapter = new UserAdapter(jsonHandler.getSceneData(level - 1), this);
+        adapter = new ItemAdapter(jsonHandler.getSceneData(level - 1), this);
         recyclerView.setAdapter(adapter);
 
 

@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Random;
 
 
-public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements View.OnDragListener {
-    private List<User> users;
+public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> implements View.OnDragListener {
+    private List<Item> items;
     private ImageView dropTarget, dropped;
     private String tagDropTarget, tagDroppedImage;
     private View draggedImageView;
@@ -30,8 +30,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements
     private ArrayList<Integer> sounds;
 
 
-    public UserAdapter(List<User> users, Context context) {
-        this.users = users;
+    public ItemAdapter(List<Item> items, Context context) {
+        this.items = items;
         this.context = context;
         jsonHandler = new JsonHandler(context);
 
@@ -39,7 +39,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements
     }
 
     @Override
-    public UserViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View statusContainer = inflater.inflate(R.layout.user_item, parent, false);
@@ -53,7 +53,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements
         sounds.add(R.raw.correct5);
         sounds.add(R.raw.correct6);
 
-        return new UserViewHolder(statusContainer);
+        return new ItemViewHolder(statusContainer);
 
 
     }
@@ -66,10 +66,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
 
-                    users.clear();
+                    items.clear();
                     SceneTracker.setLevel(SceneTracker.getLevel() + 1);
-                    users = jsonHandler.getSceneData(SceneTracker.getLevel() - 1);
-                    UserAdapter.this.notifyDataSetChanged();
+                    items = jsonHandler.getSceneData(SceneTracker.getLevel() - 1);
+                    ItemAdapter.this.notifyDataSetChanged();
                     SceneTracker.setCount(0);
 
                 }
@@ -94,9 +94,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements
 
 
     @Override
-    public void onBindViewHolder(UserViewHolder holder, int position) {
+    public void onBindViewHolder(ItemViewHolder holder, int position) {
 
-        User status = users.get(position);
+        Item status = items.get(position);
         holder.bind(status);
         holder.imageButton.setVisibility(View.VISIBLE);
 
@@ -225,16 +225,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> implements
 
 
     public void prevScene() {
-        users.clear();
+        items.clear();
         SceneTracker.setLevel(SceneTracker.getLevel() - 1);
-        users = jsonHandler.getSceneData(SceneTracker.getLevel() - 1);
-        UserAdapter.this.notifyDataSetChanged();
+        items = jsonHandler.getSceneData(SceneTracker.getLevel() - 1);
+        ItemAdapter.this.notifyDataSetChanged();
     }
 
 
     @Override
     public int getItemCount() {
-        return users.size();
+        return items.size();
     }
 
 

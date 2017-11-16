@@ -66,9 +66,9 @@ public class JsonHandler extends MainActivity {
 
     }
 
-    public ArrayList<User> getSceneData(int index){
+    public ArrayList<Item> getSceneData(int index){
         JSONObject sceneItem;
-        ArrayList<User> itemList = new ArrayList<>();
+        ArrayList<Item> itemList = new ArrayList<>();
         try {
             JSONArray  scene = scenes.getJSONArray(index);
             SceneTracker.setTotalLevel(scene.length()+1);
@@ -76,7 +76,7 @@ public class JsonHandler extends MainActivity {
             for (int i = 0; i < scene.length(); i++) {
 
                 sceneItem = scene.getJSONObject(i) ;
-                User item = new User(sceneItem.getString("answer"),sceneItem.getString("src"));
+                Item item = new Item(sceneItem.getString("answer"),sceneItem.getString("src"));
                 itemList.add(item);
             }
 

@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="user"
-            type="com.example.root.dragndroprecyclerviewapp.User" />
+            name="item"
+            type="com.example.root.dragndroprecyclerviewapp.Item" />
     </data>
 
     <android.support.v7.widget.CardView
@@ -18,16 +18,16 @@
         card_view:contentPadding="10dp">
 
 
-
-            <ImageButton
-                android:id="@+id/circleView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerVertical="true"
-                tools:imageUrl="@{user.profileImage}"
-                android:scaleType="fitCenter"
-                android:tag="@{user.answer}"
-                android:background="@android:color/transparent" />
+        <ImageButton
+            android:id="@+id/circleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_margin="20dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:tag="@{item.answer}"
+            tools:imageUrl="@{item.profileImage}" />
 
 
 
