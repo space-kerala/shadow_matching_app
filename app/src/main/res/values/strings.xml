@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">shadow matching</string>
+    <string name="empty">Press "START" to play game</string>
+    <string name="reload">START</string>
+    <string name="back">backbutton</string>
+    <string name="score">Score :</string>
+    <string name="next">Next</string>
 </resources>

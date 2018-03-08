@@ -3,12 +3,12 @@
   "scenes": [
 
     [
-    {"src":"file:///android_asset/apple.png","answer":"apple"},
-    {"src":"file:///android_asset/bear.png","answer":"bear"},
-    {"src":"file:///android_asset/plant.png","answer":"plant"},
-    {"src":"file:///android_asset/bear.png","answer":"bear"},
-    {"src":"file:///android_asset/plant.png","answer":"plant"},
-    {"src":"file:///android_asset/apple.png","answer":"apple"}
+    {"src":"file:////storage/emulated/0/shadow/apple.png","answer":"apple"},
+    {"src":"file:////storage/emulated/0/shadow/bear.png","answer":"bear"},
+    {"src":"file:////storage/emulated/0/shadow/plant.png","answer":"plant"},
+    {"src":"file:////storage/emulated/0/shadow/bear.png","answer":"bear"},
+    {"src":"file:////storage/emulated/0/shadow/plant.png","answer":"plant"},
+    {"src":"file:////storage/emulated/0/shadow/apple.png","answer":"apple"}
     ]
   ,
   

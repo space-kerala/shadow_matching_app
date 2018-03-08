@@ -15,6 +15,9 @@ import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 import jp.wasabeef.picasso.transformations.ColorFilterTransformation;
 
 public final class ImageBinder {
@@ -22,6 +25,7 @@ public final class ImageBinder {
     private static String tagPlant;
     private static int count = 0;
     private static int flag = 0;
+
 
 
     private ImageBinder() {
@@ -40,7 +44,6 @@ public final class ImageBinder {
         Log.d("Taggflag",Integer.toString(flag));
 
 
-
         if (SceneTracker.getPicassoCount() < 3) {
             RequestCreator requestCreator = Picasso.with(context)
                     .load(url)
@@ -53,10 +56,13 @@ public final class ImageBinder {
         } else {
 
           //  Picasso.with(context).load(url).transform(new ColorFilterTransformation(Color.BLACK)).into(imageView).memoryPolicy(MemoryPolicy.NO_CACHE );;
+            ArrayList<String> listImage = new ArrayList<>();
+            listImage.add(url);
+            String randomPic = listImage.get(new Random().nextInt(listImage.size()));
 
 
             RequestCreator requestCreator = Picasso.with(context)
-                    .load(url)
+                    .load(randomPic)
                     .transform(new ColorFilterTransformation(Color.BLACK))
                     .memoryPolicy(MemoryPolicy.NO_CACHE );
 
