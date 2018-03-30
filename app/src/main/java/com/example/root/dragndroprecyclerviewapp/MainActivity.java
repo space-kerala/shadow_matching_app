@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private File f1;
     private static int permission,permission1;
     private int level = 1;
-    public static TextView score;
+    public static TextView score,right,wrong;
     public static Button nextButton;
 
     private String folder_main = "shadow";
@@ -85,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.binding_list_activity);
         jsonHandler = new JsonHandler();
        // score = (TextView)findViewById(R.id.score);
+        right = (TextView) findViewById(R.id.rightNo_id);
+        wrong = (TextView) findViewById(R.id.wrongNo_id);
         nextButton = (Button)findViewById(R.id.next_button);
         nextButton.setVisibility(View.GONE);
         SceneTracker.setLevel(level);
@@ -95,6 +97,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewEmptySupport.setEmptyView(findViewById(R.id.list_empty));
         recyclerViewEmptySupport.setButtonView(findViewById(R.id.reload));
       //  recyclerViewEmptySupport.setScore(findViewById(R.id.score));
+        recyclerViewEmptySupport.setRight(findViewById(R.id.rightNo_id));
+        recyclerViewEmptySupport.setWrong(findViewById(R.id.wrongNo_id));
+        recyclerViewEmptySupport.setRightText(findViewById(R.id.right_id));
+        recyclerViewEmptySupport.setWrongText(findViewById(R.id.wrong_id));
+
+
 
 
 
@@ -123,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
             makeDir();
            // CopyAssets();
             loadJson();
+           // Log.d("Right",String.valueOf(SceneTracker.getCorrectedItem()));
 
             imageButtonBack.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -160,11 +169,13 @@ public class MainActivity extends AppCompatActivity {
      // itemTemp=jsonHandler.getSceneData(level - 1);
       adapter = new ItemAdapter(jsonHandler.getSceneData(level - 1), MainActivity.this);
 //      score.setText(String.valueOf(SceneTracker.getScore()));
+     // right.setText(String.valueOf(SceneTracker.getCorrectedItem()));
+     // wrong.setText(String.valueOf(SceneTracker.getWrongItem()));
       recyclerViewEmptySupport.setAdapter(adapter);
 
 
 
-     // Log.d("TScore",String.valueOf(SceneTracker.getScore()));
+
 
     }
 
@@ -181,7 +192,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void restartActivity(View view)
     {
-        SceneTracker.setScore(0);
+        SceneTracker.setWrongItem(0);
+        SceneTracker.setCorrectedItem(0);
         Intent intent= new Intent(this, MainActivity.class);
         startActivity(intent);
     }

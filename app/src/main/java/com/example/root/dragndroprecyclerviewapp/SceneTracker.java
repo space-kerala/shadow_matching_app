@@ -5,7 +5,7 @@ package com.example.root.dragndroprecyclerviewapp;
  */
 
 public class SceneTracker {
-    private static int level=0,flag=0;
+    private static int level=0,flag=0,correctedItem=0,wrongItem=0;
     private static int totalLevel=0,count=0,picassoCount=0,score=0;
     public SceneTracker( ){
 
@@ -20,6 +20,33 @@ public class SceneTracker {
     {
         return level;
     }
+
+
+
+    public static void setCorrectedItem( int value){
+        correctedItem=value;
+
+    }
+
+    public static int getCorrectedItem()
+    {
+        return correctedItem;
+    }
+
+
+
+    public static void setWrongItem( int value){
+        wrongItem = value;
+
+    }
+
+    public static int getWrongItem()
+    {
+        return wrongItem;
+    }
+
+
+
 
 
     public static void setCount(int value){

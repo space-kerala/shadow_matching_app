@@ -67,6 +67,42 @@
         android:text="@string/score"
         android:textSize="24sp" />-->
 
+
+    <TextView
+        android:id="@+id/right_id"
+        android:layout_width="85dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/wrong_id"
+        android:text="@string/right_text"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/wrong_id"
+        android:layout_width="85dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/next_button"
+
+        android:text="@string/wrong_text"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/rightNo_id"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/wrong_id"
+        android:layout_marginLeft="85dp"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/wrongNo_id"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/next_button"
+        android:layout_marginLeft="85dp"
+        android:textSize="24sp" />
+
+
+
     <Button
         android:id="@+id/next_button"
         android:layout_width="100dp"

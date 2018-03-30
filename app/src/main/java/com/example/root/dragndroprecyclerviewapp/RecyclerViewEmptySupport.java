@@ -18,7 +18,7 @@ import android.view.View;
 
 public class RecyclerViewEmptySupport extends RecyclerView {
 
-    private View emptyView,buttonView,scoreView;
+    private View emptyView,buttonView,scoreView,rightView,wrongView,rightTextView,wrongTextView;
 
     private AdapterDataObserver emptyObserver = new AdapterDataObserver() {
 
@@ -81,6 +81,28 @@ public class RecyclerViewEmptySupport extends RecyclerView {
     }
     public  void setScore(View scoreView){
         this.scoreView=scoreView;
+
+
+    }
+
+    public  void setRight(View rightView){
+        this.rightView=rightView;
+
+
+    }
+    public  void setWrong(View wrongView){
+        this.wrongView=wrongView;
+
+
+    }
+
+    public  void setRightText(View rightTextView){
+        this.rightTextView=rightTextView;
+
+
+    }
+    public  void setWrongText(View wrongTextView){
+        this.wrongTextView=wrongTextView;
 
 
     }

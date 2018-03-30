@@ -5,6 +5,7 @@ android {
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.example.root.dragndroprecyclerviewapp"
+        //"fr.tvbarthel.apps.shapi"
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 1

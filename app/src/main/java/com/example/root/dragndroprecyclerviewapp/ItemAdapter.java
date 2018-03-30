@@ -2,6 +2,7 @@ package com.example.root.dragndroprecyclerviewapp;
 
 import android.content.ClipData;
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,12 +16,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+
+import static android.support.v4.content.ContextCompat.startActivity;
 
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> implements View.OnDragListener {
     private List<Item> items;
+
     private ImageView dropTarget, dropped;
     private String tagDropTarget, tagDroppedImage;
     private View draggedImageView;
@@ -29,6 +34,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> implements
     private ImageButton imageButtonBack;
     private MediaPlayer rightVoice, wrongVoice, mp;
     private ArrayList<Integer> sounds;
+    private ArrayList<Item> temp;
+
     private int i = 0;
     private TextView score;
 
@@ -38,9 +45,78 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> implements
         this.items = items;
         this.context = context;
         jsonHandler = new JsonHandler();
+/*
+       temp = new ArrayList<>();
+       temp.add(items.get(3));
+       temp.add(items.get(4));
+       temp.add(items.get(5));
+
+       Collections.shuffle(temp);
+       Log.d("temp", String.valueOf(temp));
+       Log.d("items", String.valueOf(items));
+
+       items.remove(items.get(items.size()-1));
+       items.remove(items.get(items.size()-1));
+       items.remove(items.get(items.size()-1));
+
+       Log.d("itemsRemoved", String.valueOf(items));
+       // Collections.shuffle(items);
+       items.add(3,temp.get(2));
+       items.add(4,temp.get(1));
+       items.add(5,temp.get(0));
+       Log.d("temp", String.valueOf(temp));
+      // items.addAll(temp);*/
+
+      updateItems(items);
+
 
 
     }
+
+
+    public void updateItems(List<Item> items){
+
+        temp = new ArrayList<>();
+        for(int i =0 ; i<3; i++) {
+            temp.add(items.get(items.size() - 1));
+            Log.d("itemsSize", String.valueOf(items.size() - 1));
+            items.remove(items.get(items.size() - 1));
+        }
+
+       /* temp.add(items.get(items.size() - 1));
+        items.remove(items.get(items.size() - 1));
+
+        temp.add(items.get(items.size() - 1));
+        items.remove(items.get(items.size() - 1));*/
+
+
+
+
+        /*temp.add(items.get(items.size()-2));
+        temp.add(items.get(items.size()-3));*/
+
+        Collections.shuffle(temp);
+        Log.d("temp", String.valueOf(temp));
+        Log.d("items", String.valueOf(items));
+
+        /*items.remove(items.get(items.size()-1));
+        items.remove(items.get(items.size()-1));
+        items.remove(items.get(items.size()-1));*/
+
+        Log.d("itemsRemoved", String.valueOf(items));
+        // Collections.shuffle(items);
+        items.add(3,temp.get(2));
+        items.add(4,temp.get(1));
+        items.add(5,temp.get(0));
+
+
+
+
+        Log.d("temp", String.valueOf(temp));
+        temp.clear();
+        // items.addAll(temp);
+    }
+
 
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -58,6 +134,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> implements
         sounds.add(R.raw.correct4);
         sounds.add(R.raw.correct5);
         sounds.add(R.raw.correct6);
+
+
 
         return new ItemViewHolder(statusContainer);
 
@@ -80,11 +158,16 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> implements
                     SceneTracker.setScore(SceneTracker.getScore() + 1);
                     items.clear();
                     SceneTracker.setLevel(SceneTracker.getLevel() + 1);
-                   // MainActivity.score.setText(String.valueOf(SceneTracker.getScore()));
 
                     items = jsonHandler.getSceneData(SceneTracker.getLevel() - 1);
+                    if(items.size()!=0){
+                        updateItems(items);
+
+
+                    }
                     ItemAdapter.this.notifyDataSetChanged();
                     SceneTracker.setCount(0);
+
                     MainActivity.nextButton.setVisibility(View.GONE);
 
 
@@ -123,6 +206,34 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> implements
 
         Item status = items.get(position);
         holder.bind(status);
+
+
+        Log.d("items", String.valueOf(items.size()));
+      /*  if (position > 2) {
+
+
+            temp.add(items.get(items.size()-1));
+            temp.add(items.get(items.size()-2));
+            temp.add(items.get(items.size()-3));
+
+            Collections.shuffle(temp);
+            Log.d("temp", String.valueOf(temp));
+            Log.d("items", String.valueOf(items));
+
+            items.remove(items.get(items.size()-1));
+            items.remove(items.get(items.size()-1));
+            items.remove(items.get(items.size()-1));
+
+            Log.d("itemsRemoved", String.valueOf(items));
+           // Collections.shuffle(items);
+           *//* items.add(3,temp.get(2));
+            items.add(4,temp.get(1));
+            items.add(5,temp.get(0));*//*
+            Log.d("temp", String.valueOf(temp));
+           items.addAll(temp);
+
+        }*/
+
         holder.imageButton.setVisibility(View.VISIBLE);
 
 
@@ -233,21 +344,26 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> implements
         boolean matchFlag = false;
         if ((tagDropTarget != null) && (tagDropTarget.equals(tagDroppedImage))) {
 
+
             rightVoice.start();
             rightVoice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
+
                     playRandomSound();
                     dropTarget.setImageDrawable(dropped.getDrawable());
 
                 }
             });
-
+            SceneTracker.setCorrectedItem((SceneTracker.getCorrectedItem()+1));
             matchFlag = true;
-            //Log.d("tagid", Integer.toString(dropped.getId()));
+            MainActivity.right.setText(String.valueOf(SceneTracker.getCorrectedItem()));
+            Log.d("right", String.valueOf(SceneTracker.getCorrectedItem()));
 
         } else {
             wrongVoice.start();
+            SceneTracker.setWrongItem((SceneTracker.getWrongItem()+1));
+            MainActivity.wrong.setText(String.valueOf(SceneTracker.getWrongItem()));
             draggedImageView.setVisibility(View.VISIBLE);
             matchFlag = false;
             return false;
@@ -272,6 +388,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> implements
         items.clear();
         SceneTracker.setLevel(SceneTracker.getLevel() - 1);
         items = jsonHandler.getSceneData(SceneTracker.getLevel() - 1);
+        if(items.size()!=0){
+            updateItems(items);
+
+        }
         ItemAdapter.this.notifyDataSetChanged();
     }
 

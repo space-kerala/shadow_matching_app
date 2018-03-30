@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 import jp.wasabeef.picasso.transformations.ColorFilterTransformation;
@@ -52,23 +53,29 @@ public final class ImageBinder {
 
             requestCreator.into(imageView);
             flag=0;
+            count=0;
 
         } else {
 
-          //  Picasso.with(context).load(url).transform(new ColorFilterTransformation(Color.BLACK)).into(imageView).memoryPolicy(MemoryPolicy.NO_CACHE );;
+            //  Picasso.with(context).load(url).transform(new ColorFilterTransformation(Color.BLACK)).into(imageView).memoryPolicy(MemoryPolicy.NO_CACHE );;
             ArrayList<String> listImage = new ArrayList<>();
             listImage.add(url);
-            String randomPic = listImage.get(new Random().nextInt(listImage.size()));
+
+                Log.d("Tlistimage", String.valueOf(listImage));
+            Collections.shuffle(listImage);
 
 
             RequestCreator requestCreator = Picasso.with(context)
-                    .load(randomPic)
+                    .load(url)
                     .transform(new ColorFilterTransformation(Color.BLACK))
-                    .memoryPolicy(MemoryPolicy.NO_CACHE );
+                    .memoryPolicy(MemoryPolicy.NO_CACHE);
 
             requestCreator.into(imageView);
 
-                flag++;
+
+
+            count++;
+            flag++;
             countFlag(flag);
 
 
