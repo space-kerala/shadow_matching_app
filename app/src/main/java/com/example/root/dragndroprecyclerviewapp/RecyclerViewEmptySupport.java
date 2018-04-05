@@ -18,7 +18,7 @@ import android.view.View;
 
 public class RecyclerViewEmptySupport extends RecyclerView {
 
-    private View emptyView,buttonView,scoreView,rightView,wrongView,rightTextView,wrongTextView;
+    private View emptyView,buttonView,scoreView,rightView,wrongView,rightTextView,wrongTextView,buttonExitView;
 
     private AdapterDataObserver emptyObserver = new AdapterDataObserver() {
 
@@ -31,6 +31,7 @@ public class RecyclerViewEmptySupport extends RecyclerView {
 
                     emptyView.setVisibility(View.VISIBLE);
                     buttonView.setVisibility(View.VISIBLE);
+                    buttonExitView.setVisibility(View.VISIBLE);
                    // scoreView.setVisibility(View.VISIBLE);
 
                     // setAdapter(adapter);
@@ -39,6 +40,7 @@ public class RecyclerViewEmptySupport extends RecyclerView {
                 else {
                     emptyView.setVisibility(View.GONE);
                     buttonView.setVisibility(View.GONE);
+                    buttonExitView.setVisibility(View.GONE);
                    // scoreView.setVisibility(View.VISIBLE);
                     RecyclerViewEmptySupport.this.setVisibility(View.VISIBLE);
                 }
@@ -105,6 +107,10 @@ public class RecyclerViewEmptySupport extends RecyclerView {
         this.wrongTextView=wrongTextView;
 
 
+    }
+
+    public void setButtonExitView(View buttonExitView){
+        this.buttonExitView = buttonExitView;
     }
 
 

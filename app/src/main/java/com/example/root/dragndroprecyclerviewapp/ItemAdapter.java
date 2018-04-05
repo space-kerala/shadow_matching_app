@@ -144,53 +144,50 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> implements
 
     private void nextScene(int value) {
 
-        if (value == 3) {
+            if (value == 3) {
 
-            mp.start();
-            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
+                mp.start();
+                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
 
-            MainActivity.nextButton.setVisibility(View.VISIBLE);
-            MainActivity.nextButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    SceneTracker.setScore(SceneTracker.getScore() + 1);
-                    items.clear();
-                    SceneTracker.setLevel(SceneTracker.getLevel() + 1);
 
-                    items = jsonHandler.getSceneData(SceneTracker.getLevel() - 1);
-                    if(items.size()!=0){
-                        updateItems(items);
+                                Log.d("Total level",String.valueOf(SceneTracker.getTotalLevel()));
+                                if(SceneTracker.getTotalLevel()==SceneTracker.getLevel()){
+                                    Intent intent = new Intent(context.getApplicationContext(), LastActivity.class);
+                                    context.startActivity(intent);
+                                }
+                                else
+
+                                {
+
+                                    SceneTracker.setScore(SceneTracker.getScore() + 1);
+                                    items.clear();
+                                    SceneTracker.setLevel(SceneTracker.getLevel() + 1);
+
+                                    items = jsonHandler.getSceneData(SceneTracker.getLevel() - 1);
+                                    if (items.size() != 0) {
+                                        updateItems(items);
+
+
+                                    }
+                                    ItemAdapter.this.notifyDataSetChanged();
+                                    SceneTracker.setCount(0);
+
+                                    MainActivity.nextButton.setVisibility(View.GONE);
+                                }
+
 
 
                     }
-                    ItemAdapter.this.notifyDataSetChanged();
-                    SceneTracker.setCount(0);
-
-                    MainActivity.nextButton.setVisibility(View.GONE);
+                });
+            }
 
 
-                }
-            });
-
-
-
-
-                   // SceneTracker.setScore(SceneTracker.getScore() + 1);
-
-
-                }
-            });
-
-
-        }
-
-        Log.d("Score", String.valueOf(SceneTracker.getScore()));
     }
 
 
-    private void countMatch(boolean match) {
+    /*private void countMatch(boolean match) {
         if (match) {
             SceneTracker.setCount(SceneTracker.getCount() + 1);
         }
@@ -198,7 +195,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> implements
 
         nextScene(SceneTracker.getCount());
 
-    }
+    }*/
 
 
     @Override
@@ -207,6 +204,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> implements
         Item status = items.get(position);
         holder.bind(status);
 
+        MainActivity.levelText.setText(String.valueOf(SceneTracker.getLevel()));
 
         Log.d("items", String.valueOf(items.size()));
       /*  if (position > 2) {
@@ -341,6 +339,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> implements
 
     private boolean isDragMatching() {
 
+
         boolean matchFlag = false;
         if ((tagDropTarget != null) && (tagDropTarget.equals(tagDroppedImage))) {
 
@@ -353,12 +352,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> implements
                     playRandomSound();
                     dropTarget.setImageDrawable(dropped.getDrawable());
 
+
                 }
             });
             SceneTracker.setCorrectedItem((SceneTracker.getCorrectedItem()+1));
             matchFlag = true;
             MainActivity.right.setText(String.valueOf(SceneTracker.getCorrectedItem()));
             Log.d("right", String.valueOf(SceneTracker.getCorrectedItem()));
+            SceneTracker.setCount(SceneTracker.getCount() + 1);
+            nextScene(SceneTracker.getCount());
 
         } else {
             wrongVoice.start();
@@ -369,7 +371,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> implements
             return false;
         }
 
-        countMatch(matchFlag);
+
         return true;
     }
 

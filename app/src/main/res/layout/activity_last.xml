@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bgnew"
+    tools:context="com.example.root.dragndroprecyclerviewapp.LastActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/gameover"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="46dp" />
+
+    <Button
+        android:id="@+id/reload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/log"
+        android:fontFamily="casual"
+        android:onClick="restartActivity"
+        android:text="@string/reload"
+        android:textColor="@android:color/white"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        tools:ignore="RelativeOverlap" />
+
+    <Button
+        android:id="@+id/exit_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reload"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/log"
+        android:fontFamily="casual"
+        android:onClick="exitActivity"
+        android:text="@string/exit"
+        android:textColor="@android:color/white"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/right_id"
+        android:layout_width="85dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/wrong_id"
+        android:text="@string/right_text"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/wrong_id"
+        android:layout_width="85dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/reload"
+
+        android:text="@string/wrong_text"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/rightNo_id"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/wrongNo_id"
+        android:layout_marginLeft="85dp"
+        android:layout_marginStart="85dp"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/wrongNo_id"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/reload"
+        android:layout_marginLeft="85dp"
+        android:textSize="24sp" />
+</RelativeLayout>

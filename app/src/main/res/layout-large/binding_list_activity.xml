@@ -15,7 +15,7 @@
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="10dp" />
+        android:paddingTop="60dp" />
 
 
     <TextView
@@ -27,23 +27,66 @@
         android:layout_marginLeft="23dp"
         android:layout_marginStart="23dp"
         android:layout_marginTop="56dp"
-        android:text="@string/empty"
+
         android:textSize="24sp" />
 
     <Button
         android:id="@+id/reload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/next_button"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="50dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="200dp"
+        android:background="@drawable/log"
+        android:fontFamily="casual"
         android:onClick="restartActivity"
         android:text="@string/reload"
+        android:textColor="@android:color/white"
+        android:textSize="36sp"
+        android:textStyle="bold"
         tools:ignore="RelativeOverlap" />
 
+
+    <Button
+        android:id="@+id/exit_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reload"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/log"
+        android:fontFamily="casual"
+        android:onClick="exitActivity"
+        android:text="@string/exit"
+        android:textColor="@android:color/white"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/levelText_id"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/level_text"
+        android:textSize="30sp" />
+
+    <ImageButton
+        android:id="@+id/home_id"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:layout_alignRight="@+id/list"
+        android:background="@drawable/home"
+        android:onClick="goHome" />
+
+    <TextView
+        android:id="@+id/levelNo_id"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="false"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/levelText_id"
+        android:textSize="30sp" />
 
 
   <!--  <TextView
@@ -91,6 +134,7 @@
         android:layout_height="50dp"
         android:layout_above="@+id/wrong_id"
         android:layout_marginLeft="85dp"
+        android:text="0"
         android:textSize="24sp" />
 
     <TextView
@@ -99,6 +143,7 @@
         android:layout_height="50dp"
         android:layout_above="@+id/next_button"
         android:layout_marginLeft="85dp"
+        android:text="0"
         android:textSize="24sp" />
 
 

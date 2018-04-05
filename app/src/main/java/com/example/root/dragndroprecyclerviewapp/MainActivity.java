@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private File f1;
     private static int permission,permission1;
     private int level = 1;
-    public static TextView score,right,wrong;
+    public static TextView score,right,wrong,levelText;
     public static Button nextButton;
 
     private String folder_main = "shadow";
@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
        // score = (TextView)findViewById(R.id.score);
         right = (TextView) findViewById(R.id.rightNo_id);
         wrong = (TextView) findViewById(R.id.wrongNo_id);
+        levelText = (TextView) findViewById(R.id.levelNo_id) ;
         nextButton = (Button)findViewById(R.id.next_button);
         nextButton.setVisibility(View.GONE);
         SceneTracker.setLevel(level);
@@ -101,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewEmptySupport.setWrong(findViewById(R.id.wrongNo_id));
         recyclerViewEmptySupport.setRightText(findViewById(R.id.right_id));
         recyclerViewEmptySupport.setWrongText(findViewById(R.id.wrong_id));
+        recyclerViewEmptySupport.setButtonExitView(findViewById(R.id.exit_id));
 
 
 
@@ -196,6 +198,17 @@ public class MainActivity extends AppCompatActivity {
         SceneTracker.setCorrectedItem(0);
         Intent intent= new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    public void exitActivity(View view){
+        this.finishAffinity();
+    }
+
+
+    public void goHome(View view){
+        Intent intent= new Intent(this, StartActivity.class);
+        startActivity(intent);
+
     }
 
 

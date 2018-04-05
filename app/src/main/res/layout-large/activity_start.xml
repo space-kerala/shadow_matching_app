@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sea"
+    tools:context="com.example.root.dragndroprecyclerviewapp.StartActivity">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="false"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/b2"
+        android:fontFamily="casual"
+        android:onClick="startGame"
+        android:text="Play"
+        android:textColor="@android:color/black"
+        android:textSize="45sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="68dp" />
+
+    <Button
+        android:id="@+id/exit_id"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_alignLeft="@+id/button"
+        android:layout_alignParentBottom="false"
+        android:layout_alignStart="@+id/button"
+        android:layout_below="@+id/button"
+        android:layout_marginBottom="51dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/b2"
+        android:fontFamily="casual"
+        android:onClick="exitActivity"
+        android:text="@string/exit"
+        android:textColor="@android:color/black"
+        android:textSize="45sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

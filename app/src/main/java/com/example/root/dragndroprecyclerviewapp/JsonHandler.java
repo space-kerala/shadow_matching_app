@@ -58,6 +58,7 @@ public class JsonHandler {
             //root.getJSONArray("scenes").getJSONObject(0).getString("src");
 
             scenes = root.getJSONArray("scenes");
+            Log.d("scenes length",String.valueOf(scenes.length()));
            /* JSONArray scene = scenes.getJSONArray(0);
             JSONObject sceneItem = scene.getJSONObject(0);
 
@@ -83,9 +84,10 @@ public class JsonHandler {
         ArrayList<Item> itemList = new ArrayList<>();
 
             try {
-               // if(SceneTracker.getFlag()==1) {
+
                     JSONArray scene = scenes.getJSONArray(index);
-                    SceneTracker.setTotalLevel(scene.length() + 1);
+                SceneTracker.setTotalLevel(scenes.length());
+                   // Log.d("scene length",String.valueOf(scene.length()));
 
                     for (int i = 0; i < scene.length(); i++) {
 
@@ -94,7 +96,7 @@ public class JsonHandler {
                         itemList.add(item);
                     }
 
-            //    }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
